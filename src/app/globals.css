@@ -1,21 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-background text-neutral font-sans;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans text-neutral;
+  }
+
+  .dark body {
+    @apply bg-background-dark text-background;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-background hover:bg-primary-light transform hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary text-background hover:bg-secondary-light transform hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-primary text-primary hover:bg-primary hover:text-background transform hover:-translate-y-0.5;
+  }
+
+  .logo {
+    @apply transition-opacity duration-200 hover:opacity-80;
+  }
+
+  .nav-link {
+    @apply text-neutral hover:text-primary-light transition-all duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary-light after:transition-all after:duration-200 hover:after:w-full;
+  }
+
+  .nav-link-active {
+    @apply text-primary font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary;
+  }
+
+  .card {
+    @apply bg-background rounded-lg shadow-md overflow-hidden dark:bg-background-dark transition-all duration-200 hover:shadow-lg transform hover:-translate-y-1;
+  }
+
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary via-primary-light to-primary text-background;
+  }
+
+  .gradient-accent {
+    @apply bg-gradient-to-r from-secondary via-secondary-light to-secondary text-background;
+  }
+
+  .dark .nav-link {
+    @apply text-background hover:text-primary-light;
+  }
+
+  .dark .nav-link-active {
+    @apply text-primary-light after:bg-primary-light;
+  }
+
+  .dark .btn-outline {
+    @apply border-primary-light text-primary-light hover:bg-primary-light hover:text-background-dark;
+  }
+
+  /* Default button style for action buttons */
+  .action-button {
+    @apply btn-primary;
+  }
+}
+
+@layer utilities {
+  .fade-in {
+    @apply animate-fade-in;
+  }
+
+  .slide-up {
+    @apply animate-slide-up;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
 }
